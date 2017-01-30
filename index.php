@@ -20,9 +20,9 @@
 <?php
 try {
     //строка подключения mysql
-    $dsn = "mysql:host=localhost;dbname=blog";
+    //$dsn = "mysql:host=localhost;dbname=blog";
     //строка подключения sqlite
-   // $dsn = "sqlite:blog.sqlite";
+    $dsn = "sqlite:blog.sqlite";
     //Подключение
     $db = new PDO($dsn,"blog","blog");
     $db->beginTransaction();//Начало транзакции
