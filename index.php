@@ -43,10 +43,10 @@ try {
             $title = $_POST['title'];
             $content = $_POST['content'];
             //for mysql
-            $sql = "insert into post(title,content)values('$title','$content')";
+            //$sql = "insert into post(title,content)values('$title','$content')";
             //for sqlite
-//            $dbdate = date("Y-m-d H:i:s");
-//            $sql = "insert into post(title,content,published_date)values('$title','$content','$dbdate')";
+            $dbdate = date("Y-m-d H:i:s");
+            $sql = "insert into post(title,content,published_date)values('$title','$content','$dbdate')";
             $count = $db->exec($sql);
         }
     }
