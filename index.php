@@ -30,10 +30,10 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 //    $sql = "create table post(
-//        id integer primary key AUTOINCREMENT,
+//        id integer primary key AUTOINCREMENT, // mySql:AUTO_INCREMENT
 //        title varchar(60) not null,
 //        content text not null,
-//        published_date text
+//        published_date text //mySql:published_date datetimestamp;
 //    )";
 //    $db->exec($sql);
     //Запрос без атвета(create, drop,delete,alter,insert...)
@@ -61,24 +61,18 @@ try {
         //$sql = "select * from post where title LIKE '%%$search'";
         $st = $db->prepare("select * from post where title LIKE :filter order by published_date desc");
         $st->execute(['filter'=>"%$search%"]);
-
     }
         foreach ($st->fetchAll() as $row) {
             echo "<article>";
-            echo "<header>";
-            echo "<h3>" . $row['title'] . "</h3>";
-            echo "</header>";
-            echo "<div>{$row['content']}</div>";
-            echo "<footer>";
-            echo "<span style='font-size: 0.6em;'>{$row['published_date']}</span>";
-            echo "</footer>";
+                echo "<header>";
+                    echo "<h3>" . $row['title'] . "</h3>";
+                echo "</header>";
+                echo "<div>{$row['content']}</div>";
+                echo "<footer>";
+                    echo "<span style='font-size: 0.6em;'>{$row['published_date']}</span>";
+                echo "</footer>";
             echo "</article>";
         }
-
-
-    //Подгатовленые запросы
-
-
     //Транзакции
 }catch(PDOException $ex) {
     $db->rollBack();//Отменна изменений
